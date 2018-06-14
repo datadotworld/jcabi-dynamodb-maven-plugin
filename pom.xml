@@ -28,9 +28,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
  * OF THE POSSIBILITY OF SUCH DAMAGE.
  -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.jcabi</groupId>
@@ -38,7 +36,7 @@
         <version>1.21</version>
     </parent>
     <artifactId>jcabi-dynamodb-maven-plugin</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.10-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
     <name>jcabi-dynamodb-maven-plugin</name>
     <description>AWS DynamoDB plugin for integration testing</description>
@@ -51,10 +49,11 @@
         <url>https://travis-ci.org/jcabi/jcabi-dynamodb-maven-plugin</url>
     </ciManagement>
     <scm>
-        <connection>scm:git:github.com:jcabi/jcabi-dynamodb-maven-plugin.git</connection>
-        <developerConnection>scm:git:github.com:jcabi/jcabi-dynamodb-maven-plugin.git</developerConnection>
-        <url>https://github.com/jcabi/jcabi-dynamodb-maven-plugin</url>
-    </scm>
+        <url>git@github.com:datadotworld/jcabi-dynamodb-maven-plugin.git</url>
+        <connection>scm:git:git@github.com:datadotworld/jcabi-dynamodb-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:datadotworld/jcabi-dynamodb-maven-plugin.git</developerConnection>
+        <tag>HEAD</tag>
+  </scm>
     <distributionManagement>
         <site>
             <id>dynamodb.jcabi.com</id>
@@ -255,6 +254,42 @@
                         <goals>
                             <goal>descriptor</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jfrog.buildinfo</groupId>
+                <artifactId>artifactory-maven-plugin</artifactId>
+                <version>2.6.1</version>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>build-info</id>
+                        <goals>
+                            <goal>publish</goal>
+                        </goals>
+                        <configuration>
+                            <publisher>
+                                <contextUrl>
+                                    {{ARTIFACTORY_CONTEXT_URL|"https://dataworld.jfrog.io/dataworld"}}
+                                </contextUrl>
+                                <username>{{ARTIFACTORY_USERNAME|"maven"}}</username>
+                                <password>{{ARTIFACTORY_PASSWORD}}</password>
+                                <repoKey>plugins-release-local</repoKey>
+                                <snapshotRepoKey>plugins-snapshot-local</snapshotRepoKey>
+                            </publisher>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
