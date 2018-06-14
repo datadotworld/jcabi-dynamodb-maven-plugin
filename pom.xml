@@ -52,7 +52,6 @@
         <connection>scm:git:github.com:datadotworld/jcabi-dynamodb-maven-plugin.git</connection>
         <developerConnection>scm:git:github.com:datadotworld/jcabi-dynamodb-maven-plugin.git</developerConnection>
         <url>https://github.com/datadotworld/jcabi-dynamodb-maven-plugin</url>
-    <tag>v0.10-dw1</tag>
   </scm>
     <distributionManagement>
         <site>
