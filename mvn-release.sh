@@ -16,19 +16,12 @@
 set -o errexit -o nounset
 
 do_release() {
-    # These variables are passed as build parameters to CircleCI
-    : 0.10-dw1
-    : v0.10-dw1
-    : 0.10-dw2-SNAPSHOT
-    : ${MVN_RELEASE_USER_EMAIL}
-    : ${MVN_RELEASE_USER_NAME}
+    git config user.email 'niraj.patel@data.world'
+    git config user.name 'Via CircleCI'
 
-    git config user.email "niraj.patel@data.world"
-    git config user.name "Via CircleCI"
-
-    mvn -B -Dtag=${MVN_RELEASE_TAG} release:clean release:prepare \
-               -DreleaseVersion=${MVN_RELEASE_VER} \
-               -DdevelopmentVersion=${MVN_RELEASE_DEV_VER} \
+    mvn -B -Dtag='v0.10-dw1' release:clean release:prepare \
+               -DreleaseVersion='0.10-dw1' \
+               -DdevelopmentVersion='0.10-dw2-SNAPSHOT' \
                -DscmCommentPrefix='[maven-release-plugin] [skip ci] ' \
                -Darguments="-DskipTests=true -Dinvoker.skip=true"
 
