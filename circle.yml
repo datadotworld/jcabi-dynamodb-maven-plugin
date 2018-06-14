@@ -23,4 +23,4 @@ deployment:
     branch: master
     commands:
       - mvn deploy -DskipTests=true -Dinvoker.skip=true -s settings.xml
-      - ./mvn-release.sh
+      - bash ./mvn-release.sh
