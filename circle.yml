@@ -20,7 +20,7 @@ test:
 
 deployment:
   releases:
-    branch: master
+    branch: np-deploy
     commands:
       - mvn deploy -DskipTests=true -Dinvoker.skip=true -s settings.xml
       - bash ./mvn-release.sh

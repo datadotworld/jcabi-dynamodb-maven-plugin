@@ -17,14 +17,14 @@ set -o errexit -o nounset
 
 do_release() {
     # These variables are passed as build parameters to CircleCI
-    : ${MVN_RELEASE_VER}
-    : ${MVN_RELEASE_TAG}
-    : ${MVN_RELEASE_DEV_VER}
+    : 0.10-dw1
+    : v0.10-dw1
+    : 0.10-dw2-SNAPSHOT
     : ${MVN_RELEASE_USER_EMAIL}
     : ${MVN_RELEASE_USER_NAME}
 
-    git config user.email "${MVN_RELEASE_USER_EMAIL}"
-    git config user.name "${MVN_RELEASE_USER_NAME}"
+    git config user.email "niraj.patel@data.world"
+    git config user.name "Via CircleCI"
 
     mvn -B -Dtag=${MVN_RELEASE_TAG} release:clean release:prepare \
                -DreleaseVersion=${MVN_RELEASE_VER} \
@@ -39,6 +39,4 @@ do_release() {
 }
 
 #If the environment has a Maven release version set, let's do a release
-if [[ -v MVN_RELEASE_VER ]]; then
-  do_release
-fi
+do_release
