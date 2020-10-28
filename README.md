@@ -1,3 +1,8 @@
+# NOTICE: THIS REPOSITORY IS INACTIVE
+
+This fork was created to support the data.world platform but is no longer in use.
+
+
 <img src="http://img.jcabi.com/logo-square.svg" width="64px" height="64px" />
 
 [![EO principles respected here](http://www.elegantobjects.org/badge.svg)](http://www.elegantobjects.org)
